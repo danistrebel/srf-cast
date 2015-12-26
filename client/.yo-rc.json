@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "srfCast",
+    "style": "less",
+    "postcss": true
+  }
+}

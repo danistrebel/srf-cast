@@ -1,0 +1,17 @@
+{
+  "name": "podcast-list",
+  "version": "1.0.0",
+  "description": "Parse all podcasts from the website of the Swiss Radio and TV",
+  "main": "parseList.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Strebel",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "parse5": "^2.0.2",
+    "request": "^2.67.0",
+    "xpath": "0.0.9"
+  }
+}
