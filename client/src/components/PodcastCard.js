@@ -6,10 +6,10 @@ import Card from 'material-ui/lib/card/card';
 import CardActions from 'material-ui/lib/card/card-actions';
 import CardMedia from 'material-ui/lib/card/card-media';
 import CardTitle from 'material-ui/lib/card/card-title';
-import RaisedButton from 'material-ui/lib/raised-button';
 import CardText from 'material-ui/lib/card/card-text';
+import PodcastEpisodesDialog from './PodcastEpisodesDialog';
 
-var PodcastCard = React.createClass({
+var PodcastCardComponent = React.createClass({
   render: function() {
     var podcast = this.props.podcast
 
@@ -19,7 +19,7 @@ var PodcastCard = React.createClass({
 
     var podcatButtonNodes = podcastButtons.map(function(buttonInfo, i) {
       return (
-        <RaisedButton label={buttonInfo.type}/>
+        <PodcastEpisodesDialog link={buttonInfo.link} label={buttonInfo.type} key={i} className="podcast-episodes-button"/>
       );
     });
 
@@ -40,4 +40,4 @@ var PodcastCard = React.createClass({
   }
 })
 
-export default PodcastCard;
+export default PodcastCardComponent;
