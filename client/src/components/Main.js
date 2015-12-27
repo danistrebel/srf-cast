@@ -4,8 +4,19 @@ require('styles/App.css');
 import React from 'react';
 import PodcastCard from './PodcastCard';
 import AppBar from 'material-ui/lib/app-bar';
+import ThemeManager from 'material-ui/lib/styles/theme-manager';
+import AppTheme from './Theme';
 
 var AppComponent = React.createClass({
+  childContextTypes : {
+    muiTheme: React.PropTypes.object,
+  },
+
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getMuiTheme(AppTheme),
+    };
+  },
   getInitialState: function() {
     return {podcasts: []};
   },
