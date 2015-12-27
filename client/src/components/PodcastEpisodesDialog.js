@@ -23,9 +23,23 @@ var PodcastEpisodesDialogComponent = React.createClass({
     this.setState({dialogIsOpen: false});
   },
 
+  handleMediaSelection: function(media) {
+    this.setState({
+      dialogIsOpen: false,
+      playingMedia: media
+    });
+  },
+
+  cancelPlayer: function() {
+    this.setState({
+      dialogIsOpen: true,
+      playingMedia: undefined
+    });
+  },
+
   render: function() {
 
-    var actions = [
+    var eposodesDialogActions = [
       <FlatButton
         label="Close"
         primary={true}
@@ -36,19 +50,40 @@ var PodcastEpisodesDialogComponent = React.createClass({
     var eposodesDialog = (
       <Dialog
           title="Podcast Episodes"
-          actions={actions}
+          actions={eposodesDialogActions}
           modal={true}
           open={this.state.dialogIsOpen}>
-          <PodCastEpisodesList link={this.props.link}/>
+          <PodCastEpisodesList link={this.props.link} playMedia={this.handleMediaSelection}/>
         </Dialog>
     );
 
-    var episodesDialogOption = this.state.dialogIsOpen ? eposodesDialog : undefined;
+    var playerDialogActions = [
+      <FlatButton
+        label="Close"
+        primary={true}
+        disabled={false}
+        onClick={this.cancelPlayer} />
+      ];
+
+    var playerDialog = (
+      <Dialog
+          title="Player"
+          actions={playerDialogActions}
+          modal={true}
+          open={!!this.state.playingMedia}>
+          <video width="100%" height="100%" controls>
+            <source src={this.state.playingMedia} type="video/mp4" />
+          Your browser does not support the video tag.
+          </video>
+        </Dialog>
+    );
+
 
     return (
-      <span>
+      <span className="dialog-launcher">
         <RaisedButton label={this.props.label} onClick={this.showEpisodes}/>
-        {episodesDialogOption}
+        {eposodesDialog}
+        {playerDialog}
       </span>
     );
   }

@@ -8,6 +8,7 @@ import TableHeader from 'material-ui/lib/table/table-header';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableRow from 'material-ui/lib/table/table-row';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
+import FlatButton from 'material-ui/lib/flat-button';
 
 var PodCastEpisodesListComponent = React.createClass({
 
@@ -68,13 +69,25 @@ var PodCastEpisodesListComponent = React.createClass({
     };
   },
 
-  render: function() {
+  playMedia: function(mediaUrl, self) {
+    return function() {
+      self.props.playMedia(mediaUrl);
+    }
+  },
 
-    var episodes = this.state.entries.map(function(entry, i) {
+  render: function() {
+    var self = this;
+    var episodes = self.state.entries.map(function(entry, i) {
       return (
         <TableRow key={i}>
           <TableRowColumn>{entry.title}</TableRowColumn>
-          <TableRowColumn>{entry.link}</TableRowColumn>
+          <TableRowColumn>
+            <FlatButton
+              label="Play"
+              primary={true}
+              disabled={false}
+              onClick={self.playMedia(entry.link, self)} />
+          </TableRowColumn>
         </TableRow>
       );
     });

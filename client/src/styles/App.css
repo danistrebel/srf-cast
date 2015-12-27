@@ -7,3 +7,7 @@ section.podcast-container > div {
     width: 355px;
     margin: 5px;
 }
+
+.dialog-launcher {
+  margin-right: 20px;
+}
