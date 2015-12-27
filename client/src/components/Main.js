@@ -2,6 +2,8 @@ require('normalize.css');
 require('styles/App.css');
 
 import React from 'react';
+import PodcastCard from './PodcastCard';
+import AppBar from 'material-ui/lib/app-bar';
 
 var AppComponent = React.createClass({
   getInitialState: function() {
@@ -21,14 +23,14 @@ var AppComponent = React.createClass({
 
     var podcastNodes = this.state.podcasts.map(function(podcast, i) {
       return (
-        <Podcast podcast={podcast} key={i} />
+        <PodcastCard podcast={podcast} key={i} />
       );
     });
 
     return (
       <div>
         <section className="podcast-header">
-          <h3>SRF Podcast List</h3>
+          <AppBar title="Podcast List"/>
           <section className="podcast-container">
             {podcastNodes}
           </section>
@@ -39,18 +41,3 @@ var AppComponent = React.createClass({
 });
 
 export default AppComponent;
-
-var Podcast = React.createClass({
-  render: function() {
-    var podcast = this.props.podcast
-    return (
-      <div className="podcast-entry">
-        <div><img src={podcast.imageSrc}/></div>
-        <div className="podcast-title"><h5>{podcast.title}</h5></div>
-        <ul>
-          <li><a href={podcast.lqPodcastSrc}>LQ</a></li>
-        </ul>
-      </div>
-    )
-  }
-})
