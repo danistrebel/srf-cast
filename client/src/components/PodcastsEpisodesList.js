@@ -113,14 +113,14 @@ var PodCastEpisodesListComponent = React.createClass({
 
     return (
       <Table>
-      <TableHeader>
+      <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
       <TableRow>
       <TableHeaderColumn tooltip='Name of the episode'>Name</TableHeaderColumn>
       <TableHeaderColumn tooltip='Click to play'>Play</TableHeaderColumn>
       </TableRow>
       </TableHeader>
       <TableBody
-      stripedRows={true}>
+      stripedRows={false} displayRowCheckbox={false}>
       {episodes}
       </TableBody>
       </Table>
